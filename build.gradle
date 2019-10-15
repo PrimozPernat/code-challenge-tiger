@@ -26,3 +26,20 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+ext {
+    view_model = "2.2.0-beta01"
+    live_data = "2.2.0-beta01"
+    room_version = "2.2.0"
+    dagger = "2.24"
+    espressoVersion = '3.2.0'
+    retrofit='2.6.1'
+    moshi='1.8.0'
+    moshiConverter='2.5.0'
+    junit='4.12'
+    junitExt='1.1.1'
+    truth='1.2.0'
+    core='1.1.0'
+    appcompat='1.1.0'
+}
