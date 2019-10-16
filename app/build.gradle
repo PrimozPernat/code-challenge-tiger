@@ -17,6 +17,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    android {
+        sourceSets {
+            String sharedTestDir = 'src/sharedTest/java'
+            test {
+                java.srcDir sharedTestDir
+            }
+            androidTest {
+                java.srcDir sharedTestDir
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,17 +41,21 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.appcompat:appcompat:$app_compat"
     implementation "androidx.core:core-ktx:$core"
+
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+    implementation "com.google.android.material:material:$material"
 
     //Unit test
     testImplementation "junit:junit:$junit"
     testImplementation "androidx.test.ext:truth:$truth"
+    testImplementation "android.arch.core:core-testing:$core_testing"
 
     //Android test
-    androidTestImplementation "androidx.test.ext:junit:$junitExt"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "android.arch.core:core-testing:$core_testing"
 
     //dagger
     implementation "com.google.dagger:dagger:$dagger"
@@ -61,5 +78,6 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.moshi:moshi:$moshi"
-    implementation "com.squareup.retrofit2:converter-moshi:$moshiConverter"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter"
+    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
 }
