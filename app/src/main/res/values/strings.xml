@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Code Challenge Tiger</string>
+    <string name="title_activity_home">Job List</string>
+    <string name="location">Location:</string>
+    <string name="mock_location">123, Alexander Platz, Berlin</string>
+    <string name="date">Date:</string>
+    <string name="mock_date">12.01.2019</string>
+    <string name="duration">Duration:</string>
+    <string name="mock_duration">2.5</string>
+    <string name="customer">Customer:</string>
+    <string name="mock_name">Jon Doe</string>
+    <string name="display_hours_duration">%.1f Hours</string>
+    <string name="next_appointment">Next appointment</string>
+    <string name="other_data">Other Data</string>
+    <string name="previous_jobs">Previous jobs:</string>
+    <string name="price">Price:</string>
+    <string name="euro_price">%.2f EUR</string>
 </resources>
