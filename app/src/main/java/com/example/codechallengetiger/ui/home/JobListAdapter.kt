@@ -3,15 +3,17 @@ package com.example.codechallengetiger.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codechallengetiger.R
 import com.example.codechallengetiger.model.Job
+import com.example.codechallengetiger.util.formatDate
 import kotlinx.android.synthetic.main.item_job_view.view.*
 
-class JobListAdapter : ListAdapter<Job, JobViewHolder>(JOB_COMPERATOR) {
+
+class JobListAdapter(val clickListener: (Job) -> Unit) :
+    ListAdapter<Job, JobViewHolder>(JOB_COMPERATOR) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobViewHolder {
         return JobViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -24,7 +26,7 @@ class JobListAdapter : ListAdapter<Job, JobViewHolder>(JOB_COMPERATOR) {
 
     override fun onBindViewHolder(holder: JobViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bindData(it)
+            holder.bindData(it, clickListener)
         }
     }
 
@@ -45,11 +47,17 @@ class JobListAdapter : ListAdapter<Job, JobViewHolder>(JOB_COMPERATOR) {
 
 class JobViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bindData(item: Job) {
+    fun bindData(item: Job, clickListener: (Job) -> Unit) {
         itemView.customer.text = item.customerName
         itemView.location.text = item.getLocation()
-        itemView.date.text = item.date
+        itemView.date.text = item.getDateAndTime()
         itemView.duration.text =
-            itemView.context.getString(R.string.display_hours_duration, item.orderDuration)
+            itemView.context.getString(
+                R.string.display_hours_duration,
+                item.orderDuration
+            )
+        itemView.card_view.setOnClickListener {
+            clickListener(item)
+        }
     }
 }

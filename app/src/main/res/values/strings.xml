@@ -10,4 +10,9 @@
     <string name="customer">Customer:</string>
     <string name="mock_name">Jon Doe</string>
     <string name="display_hours_duration">%.1f Hours</string>
+    <string name="next_appointment">Next appointment</string>
+    <string name="other_data">Other Data</string>
+    <string name="previous_jobs">Previous jobs:</string>
+    <string name="price">Price:</string>
+    <string name="euro_price">%.2f EUR</string>
 </resources>

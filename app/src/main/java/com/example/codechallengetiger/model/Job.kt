@@ -3,9 +3,11 @@ package com.example.codechallengetiger.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.codechallengetiger.util.formatDate
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(primaryKeys = ["customerName", "date", "orderDuration"])
 data class Job(
     @Json(name = "customer_name") val customerName: String,
@@ -21,9 +23,13 @@ data class Job(
     @Json(name = "job_postalcode") val postalCode: Int,
     @Json(name = "job_street") val address: String,
     val status: String
-) {
+) : Parcelable {
 
     fun getLocation(): String {
         return "$address, $city, $postalCode"
+    }
+
+    fun getDateAndTime(): String {
+        return "${date.formatDate()} at ${orderTime}"
     }
 }
