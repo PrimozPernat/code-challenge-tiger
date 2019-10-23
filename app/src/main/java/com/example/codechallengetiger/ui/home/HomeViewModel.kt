@@ -1,15 +1,13 @@
 package com.example.codechallengetiger.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.example.codechallengetiger.model.Job
 import com.example.codechallengetiger.repository.IHomeRepository
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(repo: IHomeRepository) : ViewModel() {
-    private val resultData = liveData {
+    private val resultData = liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
         emit(repo.getJobList())
     }
 

@@ -2,6 +2,7 @@ package com.example.codechallengetiger.di
 
 import android.app.Application
 import androidx.room.Room
+import com.example.codechallengetiger.db.JobDao
 import com.example.codechallengetiger.db.JobDatabase
 import com.example.codechallengetiger.network.JobApi
 import com.example.codechallengetiger.repository.HomeRepository
@@ -21,11 +22,11 @@ object AppModule {
     @Singleton
     @JvmStatic
     @Provides
-    fun provideRoomDatabase(application: Application): JobDatabase =
+    fun provideRoomDatabase(application: Application): JobDao =
         Room.databaseBuilder(
             application.applicationContext,
             JobDatabase::class.java, JobDatabase.JOB_DATABASE_NAME
-        ).build()
+        ).build().jobDao()
 
     @Singleton
     @JvmStatic
